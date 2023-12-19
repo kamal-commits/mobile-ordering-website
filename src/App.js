@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import ProductCard from "./components/ProductCard"
+import axios from "axios"
+import { Box } from "@mui/material"
+import Header from "./components/Header"
 
-function App() {
+export default function App() {
+
+  const [products, setProducts] = useState([])
+  const [params, setParams] = useState({
+    limit: 100,
+    page: 1
+  })
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/product`, {
+        params
+      })
+
+      setProducts(response?.data?.data)
+    }
+    getProducts()
+  }
+    , [])
+
+
+  console.log(products)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Box>
+      <Header />
+      <Box sx={{
+        display: 'flex',
+        // justifyContent: 'center',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '1rem',
+        // padding: '1rem',
+        backgroundColor: '#f5f5f5',
 
-export default App;
+      }}>
+
+        {products.map((product) => {
+          return (
+            <ProductCard
+              key={product.id}
+              title={product.title}
+              description={product.description}
+              imageUrl={product.image}
+              price={product.price}
+            />
+          )
+        })}
+      </Box>
+
+
+    </Box>
+  )
+}
