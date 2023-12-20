@@ -29,6 +29,7 @@ const ProductCard = ({ title, description, imageUrl, price }) => {
       height: 'auto',
       marginTop: '1rem',
       padding: '1rem',
+      borderRadius: '10px',
     },
     media: {
       // height: 140,
@@ -62,7 +63,7 @@ const ProductCard = ({ title, description, imageUrl, price }) => {
         </CardContent>
       </CardActionArea>
       <Divider />
-      <Button size="large" color="primary" variant="contained" sx={{
+      {/* <Button size="large" color="primary" variant="contained" sx={{
         margin: '1rem ',
         textAlign: 'center',
         display: 'flex',
@@ -72,7 +73,7 @@ const ProductCard = ({ title, description, imageUrl, price }) => {
         marginBottom: '0rem',
       }} >
         Add to Cart
-      </Button>
+      </Button> */}
     </Card>
   );
 };

@@ -49,7 +49,10 @@ export default function App() {
 
   return (
     <Box>
-      <Header />
+      <Header
+        setParams={setParams}
+        params={params}
+      />
       <Grid
         container
         sx={{

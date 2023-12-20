@@ -1,7 +1,10 @@
 import { Badge, Box, Hidden, IconButton, TextField, Typography } from "@mui/material"
 import React from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-export default function Header() {
+export default function Header({
+  setParams,
+  params
+}) {
   return (
     <Box sx={{
       display: 'flex',
@@ -28,11 +31,18 @@ export default function Header() {
             borderRadius: '5px',
             width: '40%',
           }}
+          onChange={(e) => {
+            setParams({
+              ...params,
+              name: e.target.value
+            })
+          }}
+          value={params.name}
 
         />
       </Hidden>
 
-      <IconButton sx={{
+      {/* <IconButton sx={{
         color: "white"
       }}>
 
@@ -43,7 +53,7 @@ export default function Header() {
             fontSize="large"
           />
         </Badge>
-      </IconButton>
+      </IconButton> */}
     </Box>
   )
 }
